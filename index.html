@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vēsture - uzdevumi</title>
+  <script>
+    function showText() {
+      var textElement = document.getElementById("textToShow");
+      textElement.style.display = "block";
+
+      var form = document.getElementById("uzdevumi");
+      var correctCount = 0;
+      var totalQuestions = form.getElementsByTagName("fieldset").length;
+
+      var q1Options = form.querySelectorAll('input[name="q1"]');
+      if (q1Options[0].checked) {
+        correctCount++;
+      }
+
+      var q2Options = form.querySelectorAll('input[name="q2"]');
+      if (q2Options[0].checked) {
+        correctCount++;
+      }
+
+      var q3Answer = form.querySelector('input[name="q3"]').value;
+      if (q3Answer.toLowerCase() === "karlis ulmanis") {
+        correctCount++;
+      }
+
+      var percentage = (correctCount / totalQuestions) * 100;
+
+
+      var percentageElement = document.getElementById("percentage");
+      percentageElement.innerHTML = "Pareizās atbildes " + percentage.toFixed(2) + "%";
+    }
+  </script>
+  <style>
+    #textToShow {
+      display: none;
+    }
+  </style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    p {
+      font-family: Georgia, serif;
+    }
+  </style>
+  <style>
+    .button {
+      padding: 10px 20px;
+      border-radius: 30px;
+      background-color: #2a7df1;
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #ffffff;
+      color: #2a7df1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Latvijas vēsture - uzdevumi</h1>
+
+  <form id="uzdevumi" onsubmit="showText(); return false;">
+    <fieldset>
+      <legend>Jautājums 1:</legend>
+      <p>Kad Latvija ieguva neatkarību?</p>
+      <label>
+        <input type="checkbox" name="q1" value="pareizi"> 1918
+      </label>
+      <label>
+        <input type="checkbox" name="q1" value="nepareizi"> 1914
+      </label>
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Jautājums 2:</legend>
+      <p>Kad Latvija atguva neatkarību? </p>
+      <label>
+        <input type="checkbox" name="q2" value="pareizi"> 1990
+      </label>
+      <label>
+        <input type="checkbox" name="q2" value="nepareizi"> 1942
+      </label>
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Jautājums 3:</legend>
+      <p>Kas valdīja Latviju no 1936-1940?</p>
+      <input type="text" name="q3">
+    </fieldset>
+    <br>
+    <input class="button" type="submit" value="Submit">
+  </form>
+
+  <p id="textToShow">
+    <span id="percentage"></span>
+  </p>
+</body>
+</html>
